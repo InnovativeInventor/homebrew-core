@@ -5,15 +5,15 @@ class Vault < Formula
   desc "Secures, stores, and tightly controls access to secrets"
   homepage "https://vaultproject.io/"
   url "https://github.com/hashicorp/vault.git",
-      :tag      => "v1.3.0",
-      :revision => "0f5c835d1cf91c00d01cb29a0048732d91357afa"
+      :tag      => "v1.3.2",
+      :revision => "d433f38172a75f69ab0f40158936f9ac7c24f0ee"
   head "https://github.com/hashicorp/vault.git"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "157a98c8c0437a07bb91f23e0f466077689c54fa0fc83bb6291972ed3fb7661e" => :catalina
-    sha256 "7ff366fc8db6a9b9bce7cdc44725b0c706498057c25aaa8addb38c60d0c0fcdc" => :mojave
-    sha256 "023fc73fcbc9b28e58bf1ce180b8f26db46df9babaa26c314073fd076213b828" => :high_sierra
+    sha256 "84c4a6e81cdc878dd540faf9edfad776dd798a6a6da9fbb3e1220d8a7303c849" => :catalina
+    sha256 "1abf060fe337bf251e550a1de773b0527bd5eb722477b723032a70ea5fece3cf" => :mojave
+    sha256 "24f2b8ae945ae0c7e431bdeedbecf559ae07a78c9b2a257f70e9594a6bea4249" => :high_sierra
   end
 
   depends_on "go@1.12" => :build

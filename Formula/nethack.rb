@@ -3,17 +3,15 @@
 class Nethack < Formula
   desc "Single-player roguelike video game"
   homepage "https://www.nethack.org/"
-  url "https://www.nethack.org/download/3.6.2/nethack-362-src.tgz"
-  version "3.6.2"
-  sha256 "fbd00ada6a4ee347ecd4a350a5b2995b4b4ab5dcc63881b3bc4485b0479ddb1d"
-  revision 1
-  head "https://git.code.sf.net/p/nethack/NetHack.git", :branch => "NetHack-3.6.2"
+  url "https://nethack.org/download/3.6.5/nethack-365-src.tgz"
+  version "3.6.5"
+  sha256 "bb6aef2b7a4cf9463c5c4b506b80645379125c0f8de57ad7acd639872fd22e76"
+  head "https://github.com/NetHack/NetHack.git"
 
   bottle do
-    sha256 "6d2a20d495af1566735b5a54a366169c20da893c15c74fe0e9a7e89bf1b3e58a" => :catalina
-    sha256 "029b30c74691c4e207f0dbd0dcfb7643dfac8cfacc29d2aabaa9b3a728946c95" => :mojave
-    sha256 "15b49603100056b2b81fd90eae869934aeacc197e26cf97937fbaf1d446c9ba9" => :high_sierra
-    sha256 "4afdeae7f562cbcbab4d1ac7f68cd1d534a987b3521e2507bb4a81ccd44fc6bc" => :sierra
+    sha256 "c2a610788486d8bc25708ad37ccc133fbb1d43f30a1f08c15f989be691a872d2" => :catalina
+    sha256 "d3dd937be7a736b64c8f793aae2ac76e77d4e8cf60886a6decf06dd627d8ff19" => :mojave
+    sha256 "837b7979cf18f3d94ebc518bc14f6c8027bf87540910d778d62fc02a67255ba8" => :high_sierra
   end
 
   uses_from_macos "ncurses"
@@ -24,6 +22,10 @@ class Nethack < Formula
   def install
     # Build everything in-order
     ENV.deparallelize
+
+    # Disable optimization since it causes a hang in the / command
+    # See issue #48465
+    ENV.O0
 
     # Generate makefiles for OS X
     cd "sys/unix" do

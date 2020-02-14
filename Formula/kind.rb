@@ -1,15 +1,15 @@
 class Kind < Formula
   desc "Run local Kubernetes cluster in Docker"
   homepage "https://kind.sigs.k8s.io/"
-  url "https://github.com/kubernetes-sigs/kind/archive/v0.6.0.tar.gz"
-  sha256 "966b5c9817850f958acf14496349276a8df6d6609adfdc41633a8b7bc73d5e5d"
+  url "https://github.com/kubernetes-sigs/kind/archive/v0.7.0.tar.gz"
+  sha256 "d2d4f98596b68c449be95a31e9680fbf7ff3503a28a0943f1997eba50de208f9"
   head "https://github.com/kubernetes-sigs/kind.git"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "90b44f5c4b4b11526371b974d86c32cf871e7b9d4042fde8e717befa33c3da07" => :catalina
-    sha256 "81100ccfcfda9542f639e8b0ab55761085e539fbfb86c9d459cc22bec6981fd0" => :mojave
-    sha256 "32d4b9e2e0b243668e10c365c18e85b3f01255d7fb06f5ca317eeb7ee3589d06" => :high_sierra
+    sha256 "fa2ba3846ebbb34f23bddeb09e646e9c25ce1db629b4e6edf40d7bd9d191f9d2" => :catalina
+    sha256 "a8aa767a31255c10b5b93890cfac3eb005b480b6b40220831f1dc235f0d8dea8" => :mojave
+    sha256 "12a4e4fdac5204ff6ea47cbcfb16722ba0671aaf1e97a14facd638ec437425ca" => :high_sierra
   end
 
   depends_on "go" => :build

@@ -2,41 +2,35 @@ class Minio < Formula
   desc "Amazon S3 compatible object storage server"
   homepage "https://github.com/minio/minio"
   url "https://github.com/minio/minio.git",
-      :tag      => "RELEASE.2019-10-12T01-39-57Z",
-      :revision => "bd106408462ecef70debf51f1e6179de950c5812"
-  version "20191012013957"
+      :tag      => "RELEASE.2020-02-07T23-28-16Z",
+      :revision => "9b4d46a6ed0b0a673d1e806ec3df251eda347f1d"
+  version "20200207232816"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "1c5c0595206f8c26f31314f9d96efed95dcb51df0e016941f6ac07bf4f8e4434" => :catalina
-    sha256 "617635392cbafe21de8060ed5fc5dacf96a246c315f2950c577eb1f7a924656e" => :mojave
-    sha256 "4d7484e1cc920ae55dcf0775b7969c0de76cc3aa2fe855f2c2334a5f2c1f4896" => :high_sierra
+    sha256 "29acf707f92bab5f01e83e2fee7275349c96c6d80b97b7bc0cadeae0828e3ee6" => :catalina
+    sha256 "386651aa51d657f213d6da88878a947afc4819fc90b7ac0f3cedd929ccd60b93" => :mojave
+    sha256 "1e176451f160d65590c57674f2031171370f39bcd87edd6897427c9f684b7028" => :high_sierra
   end
 
   depends_on "go" => :build
 
   def install
-    ENV["GOPATH"] = buildpath
-    src = buildpath/"src/github.com/minio/minio"
-    src.install buildpath.children
-    src.cd do
-      if build.head?
-        system "go", "build", "-o", buildpath/"minio"
-      else
-        release = `git tag --points-at HEAD`.chomp
-        version = release.gsub(/RELEASE\./, "").chomp.gsub(/T(\d+)\-(\d+)\-(\d+)Z/, 'T\1:\2:\3Z')
-        commit = `git rev-parse HEAD`.chomp
-        proj = "github.com/minio/minio"
+    if build.head?
+      system "go", "build", "-trimpath", "-o", bin/"minio"
+    else
+      release = `git tag --points-at HEAD`.chomp
+      version = release.gsub(/RELEASE\./, "").chomp.gsub(/T(\d+)\-(\d+)\-(\d+)Z/, 'T\1:\2:\3Z')
+      commit = `git rev-parse HEAD`.chomp
+      proj = "github.com/minio/minio"
 
-        system "go", "build", "-o", buildpath/"minio", "-ldflags", <<~EOS
-          -X #{proj}/cmd.Version=#{version}
-          -X #{proj}/cmd.ReleaseTag=#{release}
-          -X #{proj}/cmd.CommitID=#{commit}
-        EOS
-      end
+      system "go", "build", "-trimpath", "-o", bin/"minio", "-ldflags", <<~EOS
+        -X #{proj}/cmd.Version=#{version}
+        -X #{proj}/cmd.ReleaseTag=#{release}
+        -X #{proj}/cmd.CommitID=#{commit}
+      EOS
     end
 
-    bin.install buildpath/"minio"
     prefix.install_metafiles
   end
 
@@ -83,6 +77,6 @@ class Minio < Formula
   end
 
   test do
-    system "#{bin}/minio", "version"
+    system "#{bin}/minio", "--version"
   end
 end

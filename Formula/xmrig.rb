@@ -1,28 +1,25 @@
 class Xmrig < Formula
   desc "Monero (XMR) CPU miner"
   homepage "https://github.com/xmrig/xmrig"
-  url "https://github.com/xmrig/xmrig/archive/v2.14.4.tar.gz"
-  sha256 "7e827ece5df61ab1e23dda40940ad2f7946dc006fced86836aed3a26dcdc185e"
-  revision 1
+  url "https://github.com/xmrig/xmrig/archive/v5.5.3.tar.gz"
+  sha256 "267a7b7eff22a7f7e5eb93ef1602c65dfe986e19e4f65e8e64fea6596e42835a"
   head "https://github.com/xmrig/xmrig.git"
 
   bottle do
-    cellar :any
-    sha256 "593c36810c6bdb62a1e5b792ad5329ef6bbb83ce930512375c3a96641a93f099" => :catalina
-    sha256 "9cfd4cdb1593f0e90867dfce64e82f0979558ddeb89492edb4ef8fb04e865af3" => :mojave
-    sha256 "578b70e67019678acc15d0d936a948b7905dab827efbdac4c0e235dc8e00db36" => :high_sierra
-    sha256 "b798556ea6f2315521d08d4a9d209191b4b9f64bf26ff9104dca8df07f7561c4" => :sierra
+    sha256 "f6d7e0a978e25575edd0001815de29ad29d50d024bd3d1130374a4d0870158d2" => :catalina
+    sha256 "b3b9afaae316a0d8533dd44c81930d1cbd21a6d3163f36a0f8489529c6c473b8" => :mojave
+    sha256 "33f236509adb20bbe96a3b52a5a94f384882d3a50166664cd0497f7ba1894965" => :high_sierra
   end
 
   depends_on "cmake" => :build
+  depends_on "hwloc"
   depends_on "libmicrohttpd"
   depends_on "libuv"
   depends_on "openssl@1.1"
 
   def install
     mkdir "build" do
-      system "cmake", "..", "-DUV_LIBRARY=#{Formula["libuv"].opt_lib}/libuv.dylib",
-                            *std_cmake_args
+      system "cmake", "..", "-DWITH_CN_GPU=OFF", *std_cmake_args
       system "make"
       bin.install "xmrig"
     end

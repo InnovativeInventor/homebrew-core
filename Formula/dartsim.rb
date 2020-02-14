@@ -3,12 +3,12 @@ class Dartsim < Formula
   homepage "https://dartsim.github.io/"
   url "https://github.com/dartsim/dart/archive/v6.9.2.tar.gz"
   sha256 "7d46d23c04d74d3b78331f9fa7deb5ab32fd4b0c03b93548cd84a2d67771d816"
-  revision 1
+  revision 3
 
   bottle do
-    sha256 "0f342bef927315c70aa47218abdd5db8f34de241cffd709781e82cfc8bdc85a1" => :catalina
-    sha256 "a5bb7c6eeacb8377bec5034dd93046b62f5961a1d1210fdec89148086c56be71" => :mojave
-    sha256 "04c6b81f32f44444eaa3a10abecbf1137773b52062708892979590f710998135" => :high_sierra
+    sha256 "3252c0fda4811d72fe59b49efb50ef18e274a5d978dc1d147b426f1fe503c805" => :catalina
+    sha256 "bea59b436edaf442e76b417a2805dcd07981d6e13cb918cca466d9bf8c0a4bf5" => :mojave
+    sha256 "500b504f41e76446f7a5f54f046494adea4f0148b223233a7996e1828b9897f2" => :high_sierra
   end
 
   depends_on "cmake" => :build

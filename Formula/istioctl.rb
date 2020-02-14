@@ -2,14 +2,14 @@ class Istioctl < Formula
   desc "Istio configuration command-line utility"
   homepage "https://github.com/istio/istio"
   url "https://github.com/istio/istio.git",
-      :tag      => "1.4.0",
-      :revision => "c4def934e4f8d1feb42725da41ee0078cde8397f"
+      :tag      => "1.4.4",
+      :revision => "30c10500ee49689826b87db65db133cbc4a7f52a"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "70ef4153506e43a1a08767c1c6ef5c5b99a8eed4e8de0daac1261a1daa91c19b" => :catalina
-    sha256 "70ef4153506e43a1a08767c1c6ef5c5b99a8eed4e8de0daac1261a1daa91c19b" => :mojave
-    sha256 "70ef4153506e43a1a08767c1c6ef5c5b99a8eed4e8de0daac1261a1daa91c19b" => :high_sierra
+    sha256 "dcdb7cd7cf4906be4a43271ac6e5f339f633fa48fe38c7f61a054df22205bbd0" => :catalina
+    sha256 "dcdb7cd7cf4906be4a43271ac6e5f339f633fa48fe38c7f61a054df22205bbd0" => :mojave
+    sha256 "dcdb7cd7cf4906be4a43271ac6e5f339f633fa48fe38c7f61a054df22205bbd0" => :high_sierra
   end
 
   depends_on "go" => :build
@@ -18,6 +18,7 @@ class Istioctl < Formula
     ENV["GOPATH"] = buildpath
     ENV["TAG"] = version.to_s
     ENV["ISTIO_VERSION"] = version.to_s
+    ENV["HUB"] = "docker.io/istio"
 
     srcpath = buildpath/"src/istio.io/istio"
     outpath = buildpath/"out/darwin_amd64/release"
@@ -31,6 +32,6 @@ class Istioctl < Formula
   end
 
   test do
-    assert_match "Retrieve policies and rules", shell_output("#{bin}/istioctl get -h")
+    assert_match version.to_s, shell_output("#{bin}/istioctl version --remote=false")
   end
 end

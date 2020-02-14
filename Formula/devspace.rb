@@ -2,29 +2,22 @@ class Devspace < Formula
   desc "CLI helps develop/deploy/debug apps with Docker and k8s"
   homepage "https://devspace.cloud/docs"
   url "https://github.com/devspace-cloud/devspace.git",
-    :tag      => "v4.3.1",
-    :revision => "ce8745f1f65a2a8d2efa4791b0be15e081f60337"
+    :tag      => "v4.5.0",
+    :revision => "b43efe09fd3d2f567fdd5153de64aee0856c3470"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "f8a87ba1b21488ef77dc80734732e12de934ea42043da67cd40c6d06edca227e" => :catalina
-    sha256 "a26eb10464e370259ddd8056e97616ba3d80a1d055cea30f1158a58bcc35bdb2" => :mojave
-    sha256 "80eeb389ea7fe64c549e9b6eda0492aff0a49ea5c4da9c15e09358a4869023d2" => :high_sierra
+    sha256 "f171e5c9a245a2d7c7076ac6bbea40cb04e94dce09ff31f5f7191d3bbd4e2e68" => :catalina
+    sha256 "d2b84d2cf291361077627df3a2b3329fe3162b15ff9639cc89b9941fe12d4767" => :mojave
+    sha256 "d4eeb6bcb7bc1aa2dbe2baa28f7d73b6f2be04013a8e4b9ec56e0012d1de8d22" => :high_sierra
   end
 
   depends_on "go" => :build
   depends_on "kubernetes-cli"
 
   def install
-    ENV["GOPATH"] = buildpath
-
-    dir = buildpath/"src/github.com/devspace-cloud/devspace"
-    dir.install buildpath.children
-
-    cd dir do
-      system "go", "build", "-o", bin/"devspace"
-      prefix.install_metafiles
-    end
+    system "go", "build", "-trimpath", "-o", bin/"devspace"
+    prefix.install_metafiles
   end
 
   test do

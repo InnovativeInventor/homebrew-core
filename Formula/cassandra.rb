@@ -1,18 +1,17 @@
 class Cassandra < Formula
   desc "Eventually consistent, distributed key-value store"
   homepage "https://cassandra.apache.org"
-  url "https://www.apache.org/dyn/closer.cgi?path=cassandra/3.11.4/apache-cassandra-3.11.4-bin.tar.gz"
-  sha256 "5d598e23c3ffc4db0301ec2b313061e3208fae0f9763d4b47888237dd9069987"
+  url "https://archive.apache.org/dist/cassandra/3.11.5/apache-cassandra-3.11.5-bin.tar.gz"
+  sha256 "a765adcaa42a6c881f5e79d030854d082900992cc11da40eee413bb235970a6a"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "da8da1c111337bfe5ca6a65457e33f2127b294d1ec7b215afc4a2ffde9ba9b13" => :catalina
-    sha256 "d3095afa053d64cb3c7f02e193df760029c0b475c7b9de2fab1531370d30ae94" => :mojave
-    sha256 "b85177946477a400d6bbfa2cf0cae6536542657055167a833b2752657044378a" => :high_sierra
-    sha256 "11de972c00c4b627e7c58de7b0645c4ef76ded64a31a88ccb8e3fc0b4c0da833" => :sierra
+    sha256 "42b99821ce8118fcdee212008bc3363d6db290030c54b5fc757a297af9df439d" => :catalina
+    sha256 "4fd242d2203108e0abd038b6a1e780325e7e66ee21b7441950012458b33f424e" => :mojave
+    sha256 "96c3282be35a4f27abba9c157a9f6c431ee5819ce2c729444fd9d3e60c4992b6" => :high_sierra
   end
 
-  depends_on "cython"
+  depends_on "cython" => :build
   depends_on "python"
 
   # Only >=Yosemite has new enough setuptools for successful compile of the below deps.
@@ -62,7 +61,7 @@ class Cassandra < Formula
     inreplace "conf/cassandra.yaml", "/var/lib/cassandra", "#{var}/lib/cassandra"
     inreplace "conf/cassandra-env.sh", "/lib/", "/"
 
-    inreplace "bin/cassandra", "-Dcassandra.logdir\=$CASSANDRA_HOME/logs", "-Dcassandra.logdir\=#{var}/log/cassandra"
+    inreplace "bin/cassandra", "-Dcassandra.logdir\=$CASSANDRA_LOG_DIR", "-Dcassandra.logdir\=#{var}/log/cassandra"
     inreplace "bin/cassandra.in.sh" do |s|
       s.gsub! "CASSANDRA_HOME=\"`dirname \"$0\"`/..\"", "CASSANDRA_HOME=\"#{libexec}\""
       # Store configs in etc, outside of keg

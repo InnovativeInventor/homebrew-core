@@ -1,14 +1,14 @@
 class Rex < Formula
   desc "Command-line tool which executes commands on remote servers"
   homepage "https://www.rexify.org"
-  url "https://cpan.metacpan.org/authors/id/F/FE/FERKI/Rex-1.7.0.tar.gz"
-  sha256 "bca0fd28d91577988ff527042ed0e4e61bec26c1c90062e3c3c3bf3e857b1834"
+  url "https://cpan.metacpan.org/authors/id/F/FE/FERKI/Rex-1.8.1.tar.gz"
+  sha256 "b6b5dd0fbf01b1a85293dca7b2d5ece256f1ef51b7a49f388d4d870840d0bd03"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "e45e0606298ce52f1d12f5beca218b2537c9580d5f614512a058af3984ee4b75" => :catalina
-    sha256 "68c7c24db6dc45548177f787e4396efa4704a381bd83de5cea2d19073e504db7" => :mojave
-    sha256 "0e9ec1f06db015eff191fd046845ac0f67762406d07ebce29bf3ff9880a99407" => :high_sierra
+    sha256 "4d59f01cc470c56b285b35eddd9e70652435760ced2b5b2d7c47fdce3638c9fa" => :catalina
+    sha256 "3506a2c0d76517cc6aea1ac7c5de1c20c9bc49f2c1834cce609ab449274bf55f" => :mojave
+    sha256 "25d63c0b1dc812d8a657b3548952cfdc8c2147d44b3b818d4bb5a693300d2a39" => :high_sierra
   end
 
   resource "Module::Build" do
@@ -44,8 +44,8 @@ class Rex < Formula
   end
 
   resource "ExtUtils::MakeMaker" do
-    url "https://cpan.metacpan.org/authors/id/B/BI/BINGOS/ExtUtils-MakeMaker-7.38.tar.gz"
-    sha256 "897d64af242331ebb69090f68a2b610091e1996952d02096ce7942072a35e02c"
+    url "https://cpan.metacpan.org/authors/id/B/BI/BINGOS/ExtUtils-MakeMaker-7.44.tar.gz"
+    sha256 "52a18f8271250faf5f3527499dd2b78d3b4fd3b064408d0cfdda9a3538887188"
   end
 
   resource "File::Listing" do
@@ -64,8 +64,8 @@ class Rex < Formula
   end
 
   resource "HTTP::Cookies" do
-    url "https://cpan.metacpan.org/authors/id/O/OA/OALDERS/HTTP-Cookies-6.07.tar.gz"
-    sha256 "6a2f8cde56074c9dc5b46a143975f19b981d0569f1d4dc5e80567d6aab3eea2a"
+    url "https://cpan.metacpan.org/authors/id/O/OA/OALDERS/HTTP-Cookies-6.08.tar.gz"
+    sha256 "49ebb73576eb41063c04bc079477df094496deec805ae033f3be338c23c3af59"
   end
 
   resource "HTTP::Daemon" do
@@ -74,8 +74,8 @@ class Rex < Formula
   end
 
   resource "HTTP::Date" do
-    url "https://cpan.metacpan.org/authors/id/O/OA/OALDERS/HTTP-Date-6.04.tar.gz"
-    sha256 "c55f3f7a36d173fec34896594a601047625f454e54ee6bb322a23f619d4eb98e"
+    url "https://cpan.metacpan.org/authors/id/O/OA/OALDERS/HTTP-Date-6.05.tar.gz"
+    sha256 "365d6294dfbd37ebc51def8b65b81eb79b3934ecbc95a2ec2d4d827efe6a922b"
   end
 
   resource "HTTP::Message" do

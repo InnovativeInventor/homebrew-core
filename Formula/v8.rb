@@ -2,14 +2,14 @@ class V8 < Formula
   desc "Google's JavaScript engine"
   homepage "https://github.com/v8/v8/wiki"
   # Track V8 version from Chrome stable: https://omahaproxy.appspot.com
-  url "https://github.com/v8/v8/archive/7.8.279.23.tar.gz"
-  sha256 "00857a609670234cae963a3866edd8ff826f0a98ebbb59a44ab8e656ff3e746c"
+  url "https://github.com/v8/v8/archive/8.0.426.19.tar.gz"
+  sha256 "c8933ae2c55f597766a3ad46901529ef07499890b66bcd5e3ece6a611126ad7e"
 
   bottle do
     cellar :any
-    sha256 "d725b2520e2dd073ea8beabf1c3ff449915855fa3277d9ccb0a2040349f01aa7" => :catalina
-    sha256 "52febfbc5407bd87cae680925ef734b2dca55838c09b5fe2c4a27247ed7468f1" => :mojave
-    sha256 "e49963383bf506aaab06c82843b2b4498c48b2af15143e8d1afb370d0f562d37" => :high_sierra
+    sha256 "db457d0f0d261f406ac723455e4d642b8ff0503afa15d60b2a80ecd3e6d06105" => :catalina
+    sha256 "4a2051d01e18f806003649f01ee6c3aa85a77b27b61f91396cfd76bd05a1f8aa" => :mojave
+    sha256 "5472d26cc567d691131dac7eeca1c1f568055a90f8147ffce6b9750032efd0d4" => :high_sierra
   end
 
   depends_on "llvm" => :build if DevelopmentTools.clang_build_version < 1100
@@ -21,18 +21,18 @@ class V8 < Formula
   # e.g. for CIPD dependency gn: https://github.com/v8/v8/blob/7.6.303.27/DEPS#L15
   resource "gn" do
     url "https://gn.googlesource.com/gn.git",
-      :revision => "152c5144ceed9592c20f0c8fd55769646077569b"
+      :revision => "ad9e442d92dcd9ee73a557428cfc336b55cbd533"
   end
 
   # e.g.: https://github.com/v8/v8/blob/7.6.303.27/DEPS#L60 for the revision of build for v8 7.6.303.27
   resource "v8/build" do
     url "https://chromium.googlesource.com/chromium/src/build.git",
-      :revision => "693faeda4ee025796c7e473d953a5a7b6ad64c93"
+      :revision => "e35470d98289c1f82179839d7657d45b59e982c9"
   end
 
   resource "v8/third_party/icu" do
     url "https://chromium.googlesource.com/chromium/deps/icu.git",
-      :revision => "53f6b233a41ec982d8445996247093f7aaf41639"
+      :revision => "dbd3825b31041d782c5b504c59dcfb5ac7dda08c"
   end
 
   resource "v8/base/trace_event/common" do
@@ -42,7 +42,7 @@ class V8 < Formula
 
   resource "v8/third_party/googletest/src" do
     url "https://chromium.googlesource.com/external/github.com/google/googletest.git",
-      :revision => "565f1b848215b77c3732bca345fe76a0431d8b34"
+      :revision => "5395345ca4f0c596110188688ed990e0de5a181c"
   end
 
   resource "v8/third_party/jinja2" do
@@ -55,6 +55,11 @@ class V8 < Formula
       :revision => "8f45f5cfa0009d2a70589bcda0349b8cb2b72783"
   end
 
+  resource "v8/third_party/zlib" do
+    url "https://chromium.googlesource.com/chromium/src/third_party/zlib.git",
+      :revision => "e77e1c06c8881abff0c7418368d147ff4a474d08"
+  end
+
   def install
     (buildpath/"build").install resource("v8/build")
     (buildpath/"third_party/jinja2").install resource("v8/third_party/jinja2")
@@ -62,6 +67,7 @@ class V8 < Formula
     (buildpath/"third_party/googletest/src").install resource("v8/third_party/googletest/src")
     (buildpath/"base/trace_event/common").install resource("v8/base/trace_event/common")
     (buildpath/"third_party/icu").install resource("v8/third_party/icu")
+    (buildpath/"third_party/zlib").install resource("v8/third_party/zlib")
 
     # Build gn from source and add it to the PATH
     (buildpath/"gn").install resource("gn")
@@ -83,7 +89,7 @@ class V8 < Formula
       :treat_warnings_as_errors     => false,
     }
 
-    # use clang from homebrew llvm formula on <= High Sierra, because the system clang is to old for V8
+    # use clang from homebrew llvm formula on <= Mojave, because the system clang is to old for V8
     if DevelopmentTools.clang_build_version < 1100
       ENV.remove "HOMEBREW_LIBRARY_PATHS", Formula["llvm"].opt_lib # but link against system libc++
       gn_args[:clang_base_path] = "\"#{Formula["llvm"].prefix}\""

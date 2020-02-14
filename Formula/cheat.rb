@@ -2,14 +2,14 @@ class Cheat < Formula
   desc "Create and view interactive cheat sheets for *nix commands"
   homepage "https://github.com/cheat/cheat"
   url "https://github.com/cheat/cheat.git",
-    :tag      => "3.2.1",
-    :revision => "e2920bd922654c71a1c9be35a5c5d7ebbc875792"
+    :tag      => "3.5.1",
+    :revision => "7b4a268ebddedca7f94de7b1d9751212f68e3488"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "321397ea3add121780d15c32a8072169c703cd3af7848e5fd3e65395d173df51" => :catalina
-    sha256 "522ba4dca28c4bf7323ec7f79004cc28cd1564cd2f4c8e874776343c9f90c508" => :mojave
-    sha256 "f9ca85aecc85a09842d4b96260167cbf565830981d1f8f7eeb47e74890a46a50" => :high_sierra
+    sha256 "5b5659889c08fe22d962c955804c210a508cc5ba4cefa69d81076c81d55c63b9" => :catalina
+    sha256 "1165dcff4c53fdb3adc322101373d2ada3f4eaeced8a133e982377055ed8c57b" => :mojave
+    sha256 "8160f43431907f2d7aed7a9a527b5f4c5760c67eeeb788deb2196396ab297a55" => :high_sierra
   end
 
   depends_on "go" => :build
@@ -24,6 +24,6 @@ class Cheat < Formula
     output = shell_output("#{bin}/cheat --init 2>&1")
     assert_match "editor: vim", output
 
-    assert_match "could not locate config file", shell_output("#{bin}/cheat tar 2>&1", 1)
+    assert_match "Created config file", shell_output("#{bin}/cheat tar 2>&1")
   end
 end

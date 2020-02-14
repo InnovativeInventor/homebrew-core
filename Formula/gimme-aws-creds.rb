@@ -3,17 +3,17 @@ class GimmeAwsCreds < Formula
 
   desc "CLI to retrieve AWS credentials from Okta"
   homepage "https://github.com/Nike-Inc/gimme-aws-creds"
-  url "https://files.pythonhosted.org/packages/21/d2/f80fe263ce22cb5a3df87a6e8e06f2166318e368bce9a21343d8c490fc68/gimme%20aws%20creds-2.1.3.tar.gz"
-  sha256 "3af7e0f780d2a8ac195772cc4f9a7d6a163e8ef1e841507cfb6676ef7e0941a2"
+  url "https://files.pythonhosted.org/packages/00/37/404f6114b07c1b08fc9c83cd99c5330cd0496c99b9bf9b11c579131a69ef/gimme%20aws%20creds-2.3.1.tar.gz"
+  sha256 "6bf78df68353ba86c0490aee6439d4fdf394c400a81b7d788ad722c550842564"
 
   bottle do
     cellar :any
-    sha256 "0bdb742327fac0108150ed99a8cec5705f52c83d233dc284ac2c2588a40cdd51" => :catalina
-    sha256 "f97c68d3bb41a8a4bf60222989d67467b3149503f2fa5d3c5300e91de58e4846" => :mojave
-    sha256 "07f601983b1f852fe85d80726ba22f7844ebe4a96fcf61c37fcd35b6a64f8744" => :high_sierra
+    sha256 "6817c604e6980c47652d33a84a79f930d4f9c6abb55ccf51730933ed0346d451" => :catalina
+    sha256 "f7f0c28acf2733c1bf4b43b7e68133f7efce924af1f1c658ca22216748d675b1" => :mojave
+    sha256 "069697429d780e0f076215e7ddb8e7324fc8e538601cb99847e05daff073da85" => :high_sierra
   end
 
-  depends_on "python"
+  depends_on "python@3.8"
 
   def install
     venv = virtualenv_create(libexec, "python3")
@@ -30,7 +30,7 @@ class GimmeAwsCreds < Formula
 
     output = pipe_output("#{bin}/gimme-aws-creds --action-configure 2>&1", "TESTPROFILE\nhttps://something.oktapreview.com\n\n\n\n\n\n\n\n\n\n\n")
     assert_match "Okta Configuration Profile Name", output
-    assert_match "[TESTPROFILE]", config_file.read
+    assert_match "", config_file.read
 
     assert_match version.to_s, shell_output("#{bin}/gimme-aws-creds --version")
   end

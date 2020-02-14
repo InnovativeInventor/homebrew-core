@@ -2,28 +2,22 @@ class KymaCli < Formula
   desc "Kyma command-line interface"
   homepage "https://kyma-project.io"
   url "https://github.com/kyma-project/cli.git",
-      :tag      => "1.8.0",
-      :revision => "89fdc6dcd8c39e0d8e15fa63d6cbee02b9638b17"
+      :tag      => "1.9.0",
+      :revision => "0fd63730643d6bd1abb5e50374000740d1721772"
   head "https://github.com/kyma-project/cli.git"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "4c762e252ca9fac83aace4a9c64ccd697649aedb2b5316b1b4262db0512ed370" => :catalina
-    sha256 "ac947921edd96aaee0316200b9d89b000134095f7dbe67e1bb58662548ada90c" => :mojave
-    sha256 "fb93cc1699da81e9927e5664703a29af043c23693300790b3c09e69cfd7a4562" => :high_sierra
+    sha256 "0b46e17d23009cc8eb0fb2bb2a4aaae7b85cde198a42a6f114630b4386d227c1" => :catalina
+    sha256 "24161d304dabe8646757257800d9f5cf34e660716fccb0ee21edd303bc0d627d" => :mojave
+    sha256 "0ad76baeab2ab4cb19ed6c76431542125d8c10f1f1f2d481998a8eb7d2201598" => :high_sierra
   end
 
   depends_on "go" => :build
 
   def install
-    ENV["GOPATH"] = buildpath
-    bin_path = buildpath/"src/github.com/kyma-project/cli/"
-    bin_path.install Dir["*"]
-
-    cd bin_path do
-      system "make", "build-darwin"
-      bin.install "bin/kyma-darwin" => "kyma"
-    end
+    system "make", "build-darwin"
+    bin.install "bin/kyma-darwin" => "kyma"
   end
 
   test do

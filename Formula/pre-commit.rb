@@ -3,17 +3,17 @@ class PreCommit < Formula
 
   desc "Framework for managing multi-language pre-commit hooks"
   homepage "https://pre-commit.com/"
-  url "https://github.com/pre-commit/pre-commit/archive/v1.20.0.tar.gz"
-  sha256 "eb7d75eb07be0557455cad16968746ed5fa609e04a0dccf83c446bfa3477bf45"
+  url "https://github.com/pre-commit/pre-commit/archive/v2.0.1.tar.gz"
+  sha256 "2fd4fc44552d77a1d24e70674550fed7cd26f1c348dbfb3d1f54a722a46f3223"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "219f8120fd41745a33a99b9fd3e41743d2f12b1c1af03c5eea486d3a50f14cb3" => :catalina
-    sha256 "f55108ee2b68b82490d850a7f12c512dd7b7e58ead9d1ded9814de076625f5a2" => :mojave
-    sha256 "e77c9db9f0ef18af49adfe12d8f0de736ad1833f7ca9ca305ed861e9d99db55c" => :high_sierra
+    sha256 "24692c6d05f9e60b6ffb29ea6f110de52ecf6929bd8b3569e72c10d121059093" => :catalina
+    sha256 "fcba832e25006b372b25d92fecafbfbce3fe415d9aa80973c98c3b1645cf23bb" => :mojave
+    sha256 "239b6b495d41b65e5746d3fce4a4866c5c24d04ff67ddd15d9c2bf7a1a0a5828" => :high_sierra
   end
 
-  depends_on "python"
+  depends_on "python@3.8"
 
   def install
     venv = virtualenv_create(libexec, "python3")
@@ -33,8 +33,6 @@ class PreCommit < Formula
       rm f
       ln_s realpath, f
     end
-    inreplace lib_python_path/"orig-prefix.txt",
-              Formula["python3"].opt_prefix, Formula["python3"].prefix.realpath
   end
 
   test do

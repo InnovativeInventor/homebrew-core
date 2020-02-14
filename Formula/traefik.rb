@@ -1,30 +1,27 @@
 class Traefik < Formula
   desc "Modern reverse proxy"
   homepage "https://traefik.io/"
-  url "https://github.com/containous/traefik/releases/download/v2.0.6/traefik-v2.0.6.src.tar.gz"
-  version "2.0.6"
-  sha256 "1e5606e7dacb5d5952245bac21e3eef2e654b1198447273e570fe07f40060403"
+  url "https://github.com/containous/traefik/releases/download/v2.1.4/traefik-v2.1.4.src.tar.gz"
+  version "2.1.4"
+  sha256 "927d22b6d9d4bcc3cad61a82317def3840ec7a661220f3f5d74808409c157854"
   head "https://github.com/containous/traefik.git"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "bc04b1731090cc1031ccd10f20c1a3deac88111552085f0338b9c1ac5d419c5e" => :catalina
-    sha256 "1f4a949564cfe03f6e622427471ed4f3bfed322c59087b372c88946ab4f99984" => :mojave
-    sha256 "700f23e27389016a354f7252e3cb17c875b52fc9e75b30d5877182b5dd7fa7c0" => :high_sierra
+    sha256 "63cdc07f1f3dbd766a7c7a2f2d5a97a69ff40d36b289f753994c647991205cd4" => :catalina
+    sha256 "808b22aee608325c512e9e6344d92444948529fe6d7d3d4b63727dd23b0e6f1d" => :mojave
+    sha256 "af40251502482de9e7b6ed897a94ebc14653116851ae17dc981a34e06c05829f" => :high_sierra
   end
 
   depends_on "go" => :build
   depends_on "go-bindata" => :build
 
   def install
-    ENV["GOPATH"] = buildpath
-    (buildpath/"src/github.com/containous/traefik").install buildpath.children
-
-    cd "src/github.com/containous/traefik" do
-      system "go", "generate"
-      system "go", "build", "-o", bin/"traefik", "./cmd/traefik"
-      prefix.install_metafiles
-    end
+    system "go", "generate"
+    system "go", "build",
+      "-ldflags", "-s -w -X github.com/containous/traefik/v2/pkg/version.Version=#{version}",
+      "-trimpath", "-o", bin/"traefik", "./cmd/traefik"
+    prefix.install_metafiles
   end
 
   plist_options :manual => "traefik"
@@ -105,5 +102,7 @@ class Traefik < Formula
     ensure
       Process.kill("HUP", pid)
     end
+
+    assert_match version.to_s, shell_output("#{bin}/traefik version 2>&1")
   end
 end

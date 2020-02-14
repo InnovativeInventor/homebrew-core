@@ -3,18 +3,18 @@ class Legit < Formula
 
   desc "Command-line interface for Git, optimized for workflow simplicity"
   homepage "https://frostming.github.io/legit/"
-  url "https://files.pythonhosted.org/packages/6b/65/819f84ef3caa4743c834122acb897df29167f6178c9c095d7896f2181387/legit-1.1.0.tar.gz"
-  sha256 "25bd3809d657c9b0bd45a6a230dc7f58a56e6e068159d471ffeadb0cf4677b4d"
+  url "https://files.pythonhosted.org/packages/75/99/e17f2b4d1939e806091721949acc664de5ad36a32187cd3222107b002400/legit-1.2.0.tar.gz"
+  sha256 "2c78b97b5947d03d55160b36255dafd3c3f3b1994148519c09a5846db21af059"
   head "https://github.com/frostming/legit.git", :branch => "master"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "1f688323badcbca7aabde7b3d6714c143d40a5306de059ecdf7dbf815157143e" => :catalina
-    sha256 "81ff474f13586a2e6e543e24d8bc2c40f29c671fa8fb194de3d5e501fcf2b7a2" => :mojave
-    sha256 "b2b05bde239b036eec589a445c27ada95aca2330b76113bba72c7ad20e482d10" => :high_sierra
+    sha256 "127d027cd0814c3920c22040f9f55ce0e0d840799309208668dbfadc5f50bff0" => :catalina
+    sha256 "8169a1412d7051abf9c9f1d3006e4632650cf958a8ca67b53f85a9f1c46f71e4" => :mojave
+    sha256 "557a989c72baf8bdef6a23600cc473bd1002c64ea9ef8571432c8862695999e4" => :high_sierra
   end
 
-  depends_on "python"
+  depends_on "python@3.8"
 
   resource "args" do
     url "https://files.pythonhosted.org/packages/e5/1c/b701b3f4bd8d3667df8342f311b3efaeab86078a840fb826bd204118cc6b/args-0.1.0.tar.gz"

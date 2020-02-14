@@ -1,15 +1,15 @@
 class GitDelta < Formula
-  desc "Syntax-highlighting pager for git"
+  desc "Syntax-highlighting pager for git and diff output"
   homepage "https://github.com/dandavison/delta"
-  url "https://github.com/dandavison/delta/archive/0.0.14.tar.gz"
-  sha256 "777b90bb20c89b63eb158d238dfb38914c3bc4617d65f8a0e465227f9c6884f9"
+  url "https://github.com/dandavison/delta/archive/0.0.16.tar.gz"
+  sha256 "631349484bb52f3bb1c22385e19d98903c094212e83fe109f97aeff0281cf00e"
   head "https://github.com/dandavison/delta.git"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "84e58fc97ad0057fefb99d0a54dd55b144036983e1e8c0288c6db81f283698cc" => :catalina
-    sha256 "85d6b34b4896986a1922ccefbae41819f50b5d7d1003d5a74559452af6c4324c" => :mojave
-    sha256 "b88d314815bc4701d835a60c15e50d9b0ff91c48bcec13f5297228cfa15bbeba" => :high_sierra
+    sha256 "0248a4a319540d6024cc7875855f99f2dae9b47f13b5c4dcdfdae4f8c66b7d13" => :catalina
+    sha256 "32894ad7e77f339198252bc5ebe5e5c0f393a1b9338b4fda3e393b47b74796e7" => :mojave
+    sha256 "81d9eb60f8c187c729ccb3bb95a5b8eb0e05e759182bad6253e5f60b53aa52d7" => :high_sierra
   end
 
   depends_on "rust" => :build
@@ -18,6 +18,7 @@ class GitDelta < Formula
   conflicts_with "delta", :because => "both install a `delta` binary"
 
   def install
+    ENV.append_to_cflags "-fno-stack-check" if DevelopmentTools.clang_build_version >= 1010
     system "cargo", "install", "--locked", "--root", prefix, "--path", "."
   end
 

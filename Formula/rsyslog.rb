@@ -1,14 +1,13 @@
 class Rsyslog < Formula
   desc "Enhanced, multi-threaded syslogd"
   homepage "https://www.rsyslog.com/"
-  url "https://www.rsyslog.com/files/download/rsyslog/rsyslog-8.1908.0.tar.gz"
-  sha256 "f8c8e53b651e03a011667c60bd2d4dba7a7cb6ec04b247c8ea8514115527863b"
+  url "https://www.rsyslog.com/files/download/rsyslog/rsyslog-8.2001.0.tar.gz"
+  sha256 "58bf06f58cd4a4d796bc5aea65fffc18c25619285adaa90d89d4cea5921ea8da"
 
   bottle do
-    sha256 "196b336e97fd2d464aa862524d8085c3505fdae7a4b6528da90dbf983fba0ce5" => :catalina
-    sha256 "0a4054dbd737bb3d4a525e289b955f032bc1f4eb7b838a8c46f56174bae3c2ea" => :mojave
-    sha256 "26f028afe97baa540fa5a3606b48eb228603634c787ec48524c73a25040f2ba5" => :high_sierra
-    sha256 "02581b59828e52756fa99798134f34771afd84308136c2f5c543941d7f56d4e6" => :sierra
+    sha256 "5d717a6677e67224805def6c470d4411719e0d0bf7bda863870c0a4c229815ac" => :catalina
+    sha256 "ae98d4b2bfb578cddb20a9bbc164d2539a53759e4d221458514a226227d32fbc" => :mojave
+    sha256 "aacb18864992de6cc73ef11ed26a966e58156df46a2f92ba35032d4207ca145a" => :high_sierra
   end
 
   depends_on "pkg-config" => :build

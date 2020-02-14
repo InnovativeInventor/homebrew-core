@@ -1,21 +1,21 @@
 class Helmfile < Formula
   desc "Deploy Kubernetes Helm Charts"
   homepage "https://github.com/roboll/helmfile"
-  url "https://github.com/roboll/helmfile/archive/v0.94.1.tar.gz"
-  sha256 "aff89609be5b0c88dfa7d2212b0f143b23ce137561bfe2c1a705419f91d9f0bd"
+  url "https://github.com/roboll/helmfile/archive/v0.99.1.tar.gz"
+  sha256 "77c82a7cf49aa8f0e8a3c57e62dd4eed542b8311c646175c6869102856d98519"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "ed1284e0b701cf117d2e74a45b9bfd28664e4833a6090c00a4b9b3b16f36bd1b" => :catalina
-    sha256 "49f98c9a8b8c985d95d35642af409ca799bbddd2e50c16ed0ab0df25dcafc716" => :mojave
-    sha256 "567aef5106543fca1b91421fbf7bf4b0059566d582a0ea0264005d9be9cea527" => :high_sierra
+    sha256 "4948bfcb5aa1e838ec1d2c55d943d3031ad4b41975baf2f4297b0c78195ec4cb" => :catalina
+    sha256 "26cb44dfdecb80cc8165dbe01b1a2e0310d6fba4ddb6e696a8035ed87f39bf28" => :mojave
+    sha256 "ce8d76889a0d70590534108e1ed0d917d1d352c0100c3bde229d0e0b7eeead97" => :high_sierra
   end
 
   depends_on "go" => :build
   depends_on "helm"
 
   def install
-    system "go", "build", "-ldflags", "-X main.Version=v#{version}",
+    system "go", "build", "-ldflags", "-X github.com/roboll/helmfile/pkg/app/version.Version=v#{version}",
              "-o", bin/"helmfile", "-v", "github.com/roboll/helmfile"
   end
 

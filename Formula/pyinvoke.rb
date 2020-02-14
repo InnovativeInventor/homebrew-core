@@ -3,20 +3,18 @@ class Pyinvoke < Formula
 
   desc "Pythonic task management & command execution"
   homepage "https://www.pyinvoke.org/"
-  url "https://github.com/pyinvoke/invoke/archive/1.2.0.tar.gz"
-  sha256 "266003d33a8b3a565268e33aa0f9767b9441cf1476a20258f929768ee5acd390"
-  revision 1
+  url "https://github.com/pyinvoke/invoke/archive/1.4.1.tar.gz"
+  sha256 "ac5880fb5d21f06cc1b29f89736cb8a43b85abea9204b4bb4277458ae025d0b7"
   head "https://github.com/pyinvoke/invoke.git"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "b542b3b704df6c5426c73b0eb5bb488450e98eabcb732acbaf2b5efc65e0b971" => :catalina
-    sha256 "381a13898c676f211ae0866eda70d51d4b500fa470e198c9cb32a57483f71b71" => :mojave
-    sha256 "6f242a9c102fbd1e02c86e7c5e26eb4053b5ef50c9d0530393158662998538e6" => :high_sierra
-    sha256 "e581b8aade463fae2f82209a2ef250cbaa5c346c6826b13770141b3551457d34" => :sierra
+    sha256 "1e1a631ba72c2a1796ea334071b4347c14f7274ee434f69142f7defde83ce65b" => :catalina
+    sha256 "a1b6e87e50e74316445c4f1e7f31c2727740348074e671e61864b030bd086307" => :mojave
+    sha256 "ee84ddb3d03af8d0826526e4d3cb3b5dc2968a8497b2478160b9ce7a0c37a57a" => :high_sierra
   end
 
-  depends_on "python"
+  depends_on "python@3.8"
 
   def install
     virtualenv_install_with_resources

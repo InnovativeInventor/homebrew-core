@@ -1,21 +1,19 @@
 class Libphonenumber < Formula
   desc "C++ Phone Number library by Google"
   homepage "https://github.com/google/libphonenumber"
-  url "https://github.com/google/libphonenumber/archive/v8.11.0.tar.gz"
-  sha256 "49b844df5a78eb5dce2eef22bb0feb4a5d45c042321c9029252ddf8105263de0"
-  revision 1
+  url "https://github.com/google/libphonenumber/archive/v8.11.4.tar.gz"
+  sha256 "8c7b76c4c06da0695661f87a5c2bddba863a7727e06c24c0879ef10fd8dca902"
 
   bottle do
     cellar :any
-    sha256 "5eda6ed12aa7760f2b90026f0445629c406ee954dfd3e980ac65b27b94e2fe05" => :catalina
-    sha256 "991f8440787db1fa849051df282b484e9adff7e7fb8d74235b8fc46205dd3e13" => :mojave
-    sha256 "cda45e9f7903ce245d612a0070e13c5943775e02bc49a7b312d580af9acab77a" => :high_sierra
+    sha256 "a8f129c3f56d76541069e831ac2a7165e81001d67b6863c0a3162c4889392997" => :catalina
+    sha256 "59fd5c801ec5b341dcc3107433b4b384b64dde462eeee8b689cd17fcd8d51ecb" => :mojave
+    sha256 "dbe9774ad04f6d9f595092312eeac67665f96376ac80a9ed5ce96953ccda09b2" => :high_sierra
   end
 
   depends_on "cmake" => :build
   depends_on "boost"
   depends_on "icu4c"
-  depends_on :java => "1.7+"
   depends_on "protobuf"
   depends_on "re2"
 

@@ -1,17 +1,18 @@
 class Libvirt < Formula
   desc "C virtualization API"
   homepage "https://www.libvirt.org"
-  url "https://libvirt.org/sources/libvirt-5.9.0.tar.xz"
-  sha256 "3496d2e1d988185de013b2a9d2e8824458afd85aa7cd050283a59b3d78978939"
+  url "https://libvirt.org/sources/libvirt-6.0.0.tar.xz"
+  sha256 "e6bb642389bbace3252c462bbb2e9b1749dd64315b9873a424f36c7f8d357f76"
   head "https://github.com/libvirt/libvirt.git"
 
   bottle do
-    sha256 "15c9711df6e2c8dfcfac262a19c1d0aa0e1be6c518a548af238f26aa63c24006" => :catalina
-    sha256 "d837fc01b016eb7a624a56155910e6b4c428b7833fb5f111956ab38997a37337" => :mojave
-    sha256 "ec74e1d18cc8adcff1a99b6b3de4d11f6a2733b2113f02566c8f90694ea1c9c2" => :high_sierra
+    sha256 "2c7ab1d9d2f8cba0b000125531ac638dd8d298340929fbd708b9deaf7055d59c" => :catalina
+    sha256 "21a875d3d362fef220ea7ac94c3f703b0ce355cf897dada0b1004f267981b3ab" => :mojave
+    sha256 "0ee4f00ed5826491ceb06b12edf1992b133b846f7b85c8d972b081dae2ff2b09" => :high_sierra
   end
 
   depends_on "pkg-config" => :build
+  depends_on "docutils"
   depends_on "glib"
   depends_on "gnutls"
   depends_on "libgcrypt"
@@ -46,16 +47,18 @@ class Libvirt < Formula
     args << "gl_cv_func_ftello_works=yes"
 
     system "./autogen.sh" if build.head?
-    system "./configure", *args
+    mkdir "build" do
+      system "../configure", *args
 
-    # Compilation of docs doesn't get done if we jump straight to "make install"
-    system "make"
-    system "make", "install"
+      # Compilation of docs doesn't get done if we jump straight to "make install"
+      system "make"
+      system "make", "install"
+    end
 
     # Update the libvirt daemon config file to reflect the Homebrew prefix
     inreplace "#{etc}/libvirt/libvirtd.conf" do |s|
-      s.gsub! "/etc/", "#{HOMEBREW_PREFIX}/etc/"
-      s.gsub! "/var/", "#{HOMEBREW_PREFIX}/var/"
+      s.gsub! "/etc/", "#{etc}/"
+      s.gsub! "/var/", "#{var}/"
     end
   end
 

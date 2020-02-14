@@ -1,15 +1,15 @@
 class Wcslib < Formula
   desc "Library and utilities for the FITS World Coordinate System"
   homepage "https://www.atnf.csiro.au/people/mcalabre/WCS/"
-  url "https://www.atnf.csiro.au/pub/software/wcslib/wcslib-6.4.tar.bz2"
-  sha256 "13c11ff70a7725563ec5fa52707a9965fce186a1766db193d08c9766ea107000"
+  url "https://www.atnf.csiro.au/pub/software/wcslib/wcslib-7.1.tar.bz2"
+  sha256 "f0bb749eb384794501ad3f71cc10d69debcc0dfca2a395ef57062245c9165116"
+  revision 1
 
   bottle do
     cellar :any
-    sha256 "f10115b998dd47898b972b17f9988de920195861d0f97ca8069b9c42bec12b9c" => :catalina
-    sha256 "7576767feb83f577b9b8cd0543d59465fc8c9878602d8e4003802981211d32dd" => :mojave
-    sha256 "31fbb2d390351ab6a27bdfc7cad5c521a13c93d95caeb319550d5f32f6bc965f" => :high_sierra
-    sha256 "2139f69d161b83857d2768fb5a9dd78d77eb2b94e4c80f6385093a4168228374" => :sierra
+    sha256 "6b13b97c4df588d435da3cb4e09c70b4db1ad2a19c3a15bf5d80108514062904" => :catalina
+    sha256 "db830d1e0e3c8b7da3f61d9fb007232703458200b90165a03688dea6b93fcf18" => :mojave
+    sha256 "ab7122ab82a0ab67a87f4d51fb08e0d59b9b16309ea7a830707a7207ddfd0b0c" => :high_sierra
   end
 
   depends_on "cfitsio"

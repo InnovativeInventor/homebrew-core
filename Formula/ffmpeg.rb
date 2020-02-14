@@ -1,15 +1,15 @@
 class Ffmpeg < Formula
   desc "Play, record, convert, and stream audio and video"
   homepage "https://ffmpeg.org/"
-  url "https://ffmpeg.org/releases/ffmpeg-4.2.1.tar.xz"
-  sha256 "cec7c87e9b60d174509e263ac4011b522385fd0775292e1670ecc1180c9bb6d4"
-  revision 2
+  url "https://ffmpeg.org/releases/ffmpeg-4.2.2.tar.xz"
+  sha256 "cb754255ab0ee2ea5f66f8850e1bd6ad5cac1cd855d0a2f4990fb8c668b0d29c"
+  revision 1
   head "https://github.com/FFmpeg/FFmpeg.git"
 
   bottle do
-    sha256 "11b16a8f9657e0826774d41133052b088f778a50f6f8037f641923cbb6b90335" => :catalina
-    sha256 "a8dfa8eb401973fb9aa2adf806fca3e2a091ccb16d1270b5dcd67283022ba05b" => :mojave
-    sha256 "67fa397296c48e8f838a4cfbd654da8888a7e579eb53bda46e2d2ca70908d14e" => :high_sierra
+    sha256 "546882bd1860e2a544384911c853a0eae4e648343fe231c465110c3d429f48bf" => :catalina
+    sha256 "6f4d6af93906cc627d54d1859f7fc0fe83dc5a3efc7ad37c6650cd7517a1a473" => :mojave
+    sha256 "7e194f69c8077f24317fd00b86768ea73bbce7db717ef3506f7182ccea20d0fc" => :high_sierra
   end
 
   depends_on "nasm" => :build
@@ -38,6 +38,7 @@ class Ffmpeg < Formula
   depends_on "speex"
   depends_on "tesseract"
   depends_on "theora"
+  depends_on "webp"
   depends_on "x264"
   depends_on "x265"
   depends_on "xvid"
@@ -71,6 +72,7 @@ class Ffmpeg < Formula
       --enable-libvidstab
       --enable-libvorbis
       --enable-libvpx
+      --enable-libwebp
       --enable-libx264
       --enable-libx265
       --enable-libxvid

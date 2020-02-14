@@ -1,19 +1,18 @@
 class Mame < Formula
   desc "Multiple Arcade Machine Emulator"
   homepage "https://mamedev.org/"
-  url "https://github.com/mamedev/mame/archive/mame0215.tar.gz"
-  version "0.215"
-  sha256 "c1b5fb0b91829df5f3dbe54ff13a7ccfa3a9f8aafa51a61c9a2f3158560ed609"
+  url "https://github.com/mamedev/mame/archive/mame0218.tar.gz"
+  version "0.218"
+  sha256 "c855d2a53956d7ecc6b2d029747495278cd701dc785c50548f0f20ffa673b91f"
   head "https://github.com/mamedev/mame.git"
 
   bottle do
     cellar :any
-    sha256 "8d6482856f7723633feed5a490addfddbb4d7fc0e525ef7e2580d388c35f0ee5" => :catalina
-    sha256 "84939184507c71fc93482c0b61097684bb75c1b5467b4701811f6182ed719aa1" => :mojave
-    sha256 "95bbfc00d59b9d9519f401761bcbbf1a852ec5cbd2591aed46927492d34053d1" => :high_sierra
+    sha256 "107a43de5bd425025cbe992c5a707d2e0ab7de1a647502aa98d3b65723c574d6" => :catalina
+    sha256 "097f7b85063ace674fc27e4042ca0cde718ab8caef33aa58bcd1f2f2a90c4727" => :mojave
+    sha256 "fdfc29f13a4ebebc45330a2f1d804aabbb4fb15aa3f3df6db64503a154a5f1ed" => :high_sierra
   end
 
-  depends_on "asio" => :build
   depends_on "glm" => :build
   depends_on "pkg-config" => :build
   depends_on "pugixml" => :build
@@ -43,7 +42,6 @@ class Mame < Formula
     system "make", "USE_LIBSDL=1",
                    "USE_SYSTEM_LIB_EXPAT=1",
                    "USE_SYSTEM_LIB_ZLIB=1",
-                   "USE_SYSTEM_LIB_ASIO=1",
                    "USE_SYSTEM_LIB_FLAC=1",
                    "USE_SYSTEM_LIB_GLM=1",
                    "USE_SYSTEM_LIB_JPEG=1",

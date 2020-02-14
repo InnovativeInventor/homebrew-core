@@ -2,18 +2,17 @@ class Glooctl < Formula
   desc "Envoy-Powered API Gateway"
   homepage "https://docs.solo.io/gloo/latest/"
   url "https://github.com/solo-io/gloo.git",
-      :tag      => "v1.1.0",
-      :revision => "c0dd0a2ff00f62664f73b6e7a8eeff9bfd9c5e64"
+      :tag      => "v1.3.5",
+      :revision => "e4ad67c96bfe5ebbf923748f8603c71a3c19d652"
   head "https://github.com/solo-io/gloo.git"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "d7a63b43abe77c35a2fd178b6fd9d19721f09e9654421cb777f5ec5657ffd118" => :catalina
-    sha256 "1b90a44c79aae4cbad063b4123da8c115ba4aed5f39f7710bf6d7e6dccd95d4a" => :mojave
-    sha256 "cf879d330a39e110601cae17a8e724846c0e92e862a20b2fc602679675d8b822" => :high_sierra
+    sha256 "9b5d5e8e3cbdcf3320350373190968cfc6e32d5ef330ac91d4a12b06db0c9065" => :catalina
+    sha256 "e310adfa2af95ac25204883dc3d1e1a11436d01fe35e69d339ac83d23a5f1610" => :mojave
+    sha256 "4aa7e63e54c63b705bb7bd1eb6c855b8713f5de8751c221ebed4f7253b73c598" => :high_sierra
   end
 
-  depends_on "dep" => :build
   depends_on "go" => :build
 
   def install
@@ -22,7 +21,6 @@ class Glooctl < Formula
     dir.install buildpath.children - [buildpath/".brew_home"]
 
     cd dir do
-      system "dep", "ensure", "-vendor-only"
       system "make", "glooctl", "TAGGED_VERSION=v#{version}"
       bin.install "_output/glooctl"
     end
@@ -40,6 +38,6 @@ class Glooctl < Formula
 
     # Should error out as it needs access to a Kubernetes cluster to operate correctly
     status_output = shell_output("#{bin}/glooctl get proxy 2>&1", 1)
-    assert_match "failed to create proxy client", status_output
+    assert_match "failed to create kube client", status_output
   end
 end

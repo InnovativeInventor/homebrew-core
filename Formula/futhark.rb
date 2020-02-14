@@ -5,28 +5,26 @@ class Futhark < Formula
 
   desc "Data-parallel functional programming language"
   homepage "https://futhark-lang.org/"
-  url "https://github.com/diku-dk/futhark/archive/v0.13.1.tar.gz"
-  sha256 "a0f33d7605fad80998c9b8dae6678eb8932316235a4ac6e5993f3f2858987719"
+  url "https://github.com/diku-dk/futhark/archive/v0.14.1.tar.gz"
+  sha256 "375ec3e8cc7bb54cfb042684353446c1df792c3d409cd0082256e6446d696235"
   head "https://github.com/diku-dk/futhark.git"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "5d9c1909264dec6736495ad818fbc600ac9c0e83175a798359b4254bd51b6c82" => :catalina
-    sha256 "6701e2a413da75db04c8dc91dafee8113b3f27a0b32eb5b61fe811423cdb9302" => :mojave
-    sha256 "1172f141580077b575dca45c050b3a86a5f5ebdd3aa15615b4dee7d6b07cbfad" => :high_sierra
+    sha256 "1038fcde32b0aa624f9df67d29091762cd3f26055738fa457d9363e18dd36490" => :catalina
+    sha256 "bbfaa41253c3e5a32e49eddedaf0e4692910f4fe2e1d7fe4818039256d961723" => :mojave
+    sha256 "82127e3488b7ef46d6f64afe20e3bcd4fd444d35058e92c833a81748c912d2a5" => :high_sierra
   end
 
   depends_on "cabal-install" => :build
   depends_on "ghc" => :build
+  depends_on "hpack" => :build
   depends_on "sphinx-doc" => :build
 
   def install
-    cabal_sandbox do
-      cabal_install "hpack"
-      system "./.cabal-sandbox/bin/hpack"
+    system "hpack"
 
-      install_cabal_package :using => ["alex", "happy"]
-    end
+    install_cabal_package :using => ["alex", "happy"]
 
     system "make", "-C", "docs", "man"
     man1.install Dir["docs/_build/man/*.1"]

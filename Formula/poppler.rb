@@ -1,14 +1,14 @@
 class Poppler < Formula
   desc "PDF rendering library (based on the xpdf-3.0 code base)"
   homepage "https://poppler.freedesktop.org/"
-  url "https://poppler.freedesktop.org/poppler-0.81.0.tar.xz"
-  sha256 "212d020b035b67b36c9666bd08ac778dff3222d85c01c338787d546f0f9bfe02"
+  url "https://poppler.freedesktop.org/poppler-0.85.0.tar.xz"
+  sha256 "2bc875eb323002ae6b287e09980473518e2b2ed6b5b7d2e1089e36a6cd00d94b"
   head "https://anongit.freedesktop.org/git/poppler/poppler.git"
 
   bottle do
-    sha256 "9b97533f63d2e09d7fdbeeff064015d43d7490cad118ca559d8c699985e9778c" => :catalina
-    sha256 "c41c9aff6ed97d122c0806da50ed6ec8d9e7df118c38379530bf72850979927e" => :mojave
-    sha256 "b55894e5ad440cd064a7dbac82510d91041d188501a9659f4ba76bef13acbe6d" => :high_sierra
+    sha256 "34c3bdd40c99baf040f4c312e780302666a2a741febd5a487ef04c1638bfe1ac" => :catalina
+    sha256 "e0a27de1596fec0070f153106cc2f2562641168264b0466435054ea814d00bcb" => :mojave
+    sha256 "c721859d4d1297bf623e9fa009b6621feee3af8abc7b133faf3ff3174ed0f2f8" => :high_sierra
   end
 
   depends_on "cmake" => :build
@@ -26,6 +26,7 @@ class Poppler < Formula
   depends_on "nss"
   depends_on "openjpeg"
   depends_on "qt"
+  uses_from_macos "curl"
 
   conflicts_with "pdftohtml", "pdf2image", "xpdf",
     :because => "poppler, pdftohtml, pdf2image, and xpdf install conflicting executables"

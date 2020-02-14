@@ -4,13 +4,13 @@ class Root < Formula
   url "https://root.cern.ch/download/root_v6.18.04.source.tar.gz"
   version "6.18.04"
   sha256 "315a85fc8363f8eb1bffa0decbf126121258f79bd273513ed64795675485cfa4"
-  revision 1
+  revision 2
   head "https://github.com/root-project/root.git"
 
   bottle do
-    sha256 "ca3ea6cc58b7d78e2d25bcd1cc8c186768d03728b6adc40a60399310b8ba70bb" => :catalina
-    sha256 "52ed037d69f4b90a453b01fcf82a3732c61c5a26e5077b5b45f0a9c120693d16" => :mojave
-    sha256 "f7af1a2cd8d8a0dbe39ac686e5a8cc015ba58e324e89fd8443c05eccda109580" => :high_sierra
+    sha256 "27ae5cf8f6a43ac4f094eedbf08b0b0e359f2b9367ca40bf45461db17f37e92b" => :catalina
+    sha256 "969044266dd1ca84caacee84332072459d0d527ad2e620ad3c481ddfc68275ca" => :mojave
+    sha256 "a81a8865786cd14075807c7fc00ed01350dcdd6dab0b4435f9201519299a3f75" => :high_sierra
   end
 
   # https://github.com/Homebrew/homebrew-core/issues/30726
@@ -36,6 +36,7 @@ class Root < Formula
   # https://github.com/Homebrew/brew/issues/5068
   depends_on "libxml2" if MacOS.version >= :mojave
   depends_on "lz4"
+  depends_on "numpy" # for tmva
   depends_on "openssl@1.1"
   depends_on "pcre"
   depends_on "python"
